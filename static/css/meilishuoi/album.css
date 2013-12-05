@@ -1,0 +1,133 @@
+/*专辑页面*/
+.album-nav{border-bottom:1px solid #D5D5D5;position:relative;}
+.album-nav .album-tag{line-height:20px;background:none repeat scroll 0 0 #FFEBEB;border-radius:5px;box-shadow:1px 1px 2px #BEBEBE;color:#FF65AD;font-size:14px;font-weight:normal;display:inline-block;margin:4px;padding:5px 11px;word-break:keep-all;word-wrap:normal;}
+.album-nav .album-tag:hover{background:none repeat scroll 0 0 #FFDCDC;}
+.album-nav .album-tag:active{background:none repeat scroll 0 0 #FFC7C7;}
+.album-nav .album-tag:visited{color:#FF3399;}
+.album-nav .active{background:none repeat scroll 0 0 #FF067C;color:#FFFFFF;}
+.album-nav .active:hover{background:none repeat scroll 0 0 #FF067C;color:#FFFFFF;}
+.album-nav .active:visited{background:none repeat scroll 0 0 #FF067C;color:#FFFFFF;}
+.album-i-container {overflow: hidden;width: 100%;}
+
+/*专辑页面头部*/
+.album_top{height:283px;margin:25px 0 0 0;border:1px solid #dfdfdf;margin-bottom:25px;box-shadow:1px 1px 2px #e4e4e4;position:relative;_margin-left:12px;}
+.album_top .album_daren{width:235px;padding:0 15px 0 20px;margin:5px 0 0;border-right:1px solid #e6e6e6;}
+.album_top .album_daren h3{font-size:16px;height:24px;line-height:24px;font-family:'\5FAE\8F6F\96C5\9ED1';padding:0 5px 0;color:#FF067C;background:#fff;position:relative;overflow:hidden;zoom:1;}
+.album_top .album_daren h3 a{font-size:12px;color:#777;text-decoration:underline;font-weight:normal;margin:4px 0 0;font-family:arial;}
+.album_top .album_daren li{border-top:1px solid #e6e6e6;padding:5px 0;margin:-1px 0 0 0;overflow:hidden;zoom:1;}
+.album_top .album_daren li img{height:50px;width:50px;margin:0 5px 0 0;}
+.album_top .album_daren li .album_daren_info{float:left;}
+.album_top .album_daren li p{margin:3px 0 5px;}
+.album_top .album_daren li .user_name a{font-size:12px;color:#777;font-weight:bold;}
+.album_top .album_daren li .user_info span{font-size:12px;color:#777;}
+.album_top .album_daren li .user_info a{font-size:12px;color:#FF067C;font-weight:bold;}
+.album_top .album_add{width:192px;margin:0 0 0 13px;}
+.album_top .album_add .title{margin:40px 0 0 0;color:#9a6e4c;font-size:16px;font-family:'\5FAE\8F6F\96C5\9ED1';padding:10px 2px 0 14px;}
+.album_top .album_add .reco_album_link{height:37px;width:130px;margin:22px auto 26px;color:#fff;font-size:16px;display:block;background:#FF067C;line-height:37px;text-align:center;font-weight:bold;}
+.album_top .album_add .mgmg{padding:18px 0 0;color:#777;border-top:1px dashed #ececec;}
+.album_top .album_add .mgmg a{color:#6b9e00;font-weight:bold;text-decoration:underline;}
+
+/*专辑页面焦点广告开始*/
+#album_slide { height: 283px; overflow: hidden; position: relative; width: 470px;}
+#album_slide .album_slide_items { position: absolute; width: 9999em;}
+#album_slide .album_slide_items li { float: left; height: 283px; overflow: hidden; position: relative; width: 470px;}
+#album_slide .album_slide_items li img { height: 283px; vertical-align: top; width: 470px;}
+#album_slide .album_slide_items li .author { background-color: rgba(0, 0, 0, 0.2); bottom: 0; color: #FFFFFF; font-family: '微软雅黑'; font-size: 20px; height: 66px; line-height: 38px; padding: 0 5px; position: absolute; width: 460px;/*filter: Alpha(Opacity=20);background:#000;opacity:0.2;*/}
+#album_slide .album_slide_items li .author img { height: 56px; margin: 7px 14px 0 0; width: 56px;}
+#album_slide .album_slide_items li .author p { color: #FFFFFF; font-size: 12px; line-height: 20px; margin: 8px 0 3px;}
+#album_slide .album_slide_items li .author .title { font-size: 14px; font-weight: bold;}
+#album_slide_btn { height: 10px; position: absolute; right: 500px; top: 250px;z-index:1;_top:240px;}
+#album_slide_btn li { color: #FFFFFF; cursor: pointer; float: left; font-size: 24px; height: 20px; letter-spacing: 0; line-height: 20px; margin-left: 7px; overflow: hidden; width: 16px;}
+#album_slide_btn li.c { color: #FF067C;}
+
+/*专辑详细*/
+.album-profile {-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none;-moz-border-top-colors: none; background-color: #FFFFFF;border-color: #DEDEDE #DEDEDE -moz-use-text-color;border-image: none;border-style: solid solid none;border-width: 1px 1px medium;display: inline-block;margin: 30px auto -5px;padding: 18px 0 5px;text-align: left;}
+.album-profile .album-avatar, .album-profile .album-info, .album-profile .album-aside {display: inline; float: left; margin-bottom: 0;overflow: hidden;}
+.album-profile .album-avatar {background: url(images/album-shadow.png) no-repeat scroll center top transparent;margin: -50px 20px 20px 12px;padding: 10px 0;position: relative;text-align: center;width: 235px;}
+.ico-qout-left {background: url(images/ico-qout-left.png) no-repeat scroll 0 0 transparent;height: 12px;width: 15px;}
+.ico-qout-right {background: url(images/ico-qout-right.png) no-repeat scroll 0 0 transparent;height: 11px;width: 15px;}
+.album-profile .album-avatar img {width:210px;height:210px;margin: 0 auto;vertical-align: top;}
+.album-profile .album-info .album-oper {margin: 10px 0 30px;overflow: hidden;}
+.album-profile .album-info {margin-right: 50px;width: 600px;}
+.album-profile .album-info h1 {color: #333333;font-family: "SimHei";font-size: 20px;}
+.album-profile .aalbum-info a {float: left;}
+.album-profile .album-info .album-stat {float: right;}
+.album-profile .album-info .album-stat b {color: #999999;margin-left: 20px;}
+.album-profile .album-info .album-stat i {display: inline-block;margin-left: 5px;}
+.album-profile .album-info p { border-top: 2px dashed #DCDCDC; color: #333333;font-family: "宋体";padding-top: 16px;}
+.album-profile .album-info p i {display: inline-block;margin: 0 5px;}
+.album-profile .album-aside {height: 180px; overflow: hidden;position: relative; width: 200px;padding-right: 18px;}
+.album-profile .album-aside strong {border-bottom: 1px solid #DEDEDE;box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);color: #666666;display: block;font-family: "宋体";font-size: 14px;line-height: 30px;position: relative;}
+.album-profile .album-aside strong a {font-size: 12px;line-height: 18px;position: absolute;right: 0;top: 7px;}
+.album-profile .album-aside .album-creater {margin: 10px 0 0;overflow: hidden;position: relative;}
+.album-profile .album-aside .album-creater .avatar {float: left;}
+.album-profile .album-aside .album-creater div {float: right; height: 80px;overflow: hidden;width: 110px;}
+.album-aside .album-creater div .btn { text-align: center;}
+.album-profile .album-aside .album-creater .profile-name {display: inline-block;font-family: "宋体";font-size: 14px;font-weight: bold;}
+.album-profile .album-aside .album-creater .btn {bottom: 0;left: 90px;position: absolute;}
+.album-profile .album-aside .album-all {background-color: #EEEEEE;clear: both;display: block;margin: 20px 0 15px;padding: 5px 10px;}
+.album-profile .album-aside .album-creater-me div {margin: 10px 0;overflow: hidden;}
+.album-profile .album-aside .album-creater-me .album-all {background-color: #FFFFFF;font-size: 14px;font-weight: bold;margin: 0;padding: 0;}
+.album-oper-goods i, .album-oper-pic i {display: inline-block;margin-right: 5px;}
+.album-oper-goods, .album-oper-pic {background-color: #F5F5F5;display: block;float: left;padding: 12px 14px;}
+.album-oper-goods {border-right: 1px solid #D6D6D6;}
+
+/*专辑发布修改删除*/
+.add_album_content .add_album_content_btn, .add_album_content .delete, .add_album_content .edit {
+    background: url("images/album_single_bg.png") no-repeat scroll 0 14px transparent;
+}
+.add_album_content {
+    background: none repeat scroll 0 0 #F7F7F7;
+    height: 23px;
+    padding: 12px 0;
+}
+.add_album_content .add_album_content_btn {
+    background-position: 0 -127px;
+    color: #FFFFFF;
+    display: block;
+    height: 23px;
+    line-height: 21px;
+    margin: 0 28px 0 10px;
+    padding-left: 24px;
+    width: 58px;
+}
+.add_album_content .delete, .add_album_content .edit {
+    background-position: 0 -94px;
+    color: #666666;
+    margin-right: 15px;
+    margin-top: 2px;
+    padding-left: 17px;
+}
+.add_album_content .edit {
+    background-position: 0 -44px;
+}
+
+/*专辑相关*/
+.album_about { background: url(images/album_about.png) repeat-y 0 0 transparent; border-top: 1px solid #EAEAEA; overflow: hidden; padding: 15px 0 0; width: 960px;}
+.album_about h3 { color: #87BD34; font-family: '微软雅黑'; font-size: 18px; font-weight: normal; line-height: 30px; margin: 0 0 15px;}
+.album_pub { width: 470px;}
+.pub_area .pub_txt { border: 1px solid #BBBBBB; border-radius: 3px 3px 3px 3px; height: 60px; line-height: 16px; overflow: hidden; padding: 5px; resize: none; width: 430px; color: #999999;}
+.pub_area_ft { margin-top: 10px; overflow: hidden; width: 440px;}
+.pub_area_ft .btn { display: block; height: 22px; line-height: 22px; margin: 0 0 0 5px;}
+.note_comment { margin: 20px 30px 40px 0;}
+.note_comment .c_l { background-color: #FFFFFF; overflow: hidden; padding-bottom: 10px;}
+.note_comment .c_l li { min-height: 40px; padding: 10px 10px 5px 0; position: relative;}
+.note_comment .c_l li.hover { background: none repeat scroll 0 0 #F8F8F8;}
+.note_comment .c_l li.hover div { visibility: visible;}
+.note_comment .c_l .avt { border-radius: 3px 3px 3px 3px; float: left; height: 36px; margin: 3px 10px 0 0; width: 36px;}
+.note_comment .c_l p {color: #666666;font-size: 14px;line-height: 18px; padding: 0 65px 0 48px;}
+.note_comment .c_l p span {color: #B3B3B3;font-size: 12px;}
+.note_comment .c_l p a {color: #87BD34;}
+.note_comment .c_l p .n {font-size: 12px;}
+.album_reco {padding: 0 15px;width: 215px;}
+.album_reco .album_look_link,.album_reco .album_unlook_link {background-position: 0 -163px;height: 28px;width: 72px;font-weight: 700;font-size: 14px; padding-left: 30px; color: #FF76AB; line-height: 28px;}
+.album_reco .album_unlook_link {color: #999999;}
+.album_reco .album_look p { color: #999999; line-height: 28px; margin-left: 8px;}
+.album_reco .album_share { border-top: 1px solid #F4F4F4; margin: 48px 0 0; padding: 30px 0 0;}
+.album_guess { padding: 0 0 0 20px; width: 210px;}
+.album_guess h3 .all { color: #87BD34; font-size: 12px; line-height: 30px; text-decoration: underline;}
+.album_guess .album_item { margin: 0 0 20px;}
+
+/*main_wrap*/
+.main_wrap { _padding-left:22px;}
+.album_wrap {_margin-left:13px;}
