@@ -1,0 +1,69 @@
+<volist name="item_list" id="itemall">
+<div class="J_item wall_item masonry-brick">
+	<present name="like_manage">
+		<a href="javascript:;" class="J_unlike del_item" title="{:L('delete')}" data-id="{$itemall.id}"></a>
+	</present>
+	<present name="album_manage">
+		<if condition="$album['uid'] eq $visitor['id']">
+			<a href="javascript:;" class="J_delitem del_item" title="{:L('delete')}" data-id="{$itemall.id}" data-aid="{$album.id}"></a>
+		</if>
+		<else/>
+		<if condition="$itemall['uid'] eq $visitor['id']">
+			<a href="javascript:;" class="J_delitem del_item" title="{:L('delete')}" data-id="{$itemall.id}"></a>
+		</if>
+	</present>
+	<!--图片-->
+	<ul class="pic">
+		<li>
+			<a target="_blank" title="{$itemall.title}" href="{:U('item/index', array('id'=>$itemall['id']))}">
+				<img class="J_img J_decode_img" alt="{$itemall.title}" data-uri="{:base64_encode(attach(get_thumb($itemall['img'], '_m'), 'item'))}">
+			</a>
+			<span class="p"><if condition="$itemall['price'] gt 0">¥{$itemall.price}</if></span>
+			<a data-id="{$itemall.id}" class="J_joinalbum addalbum_btn" href="javascript:;">
+			</a>
+		</li>
+	</ul>
+	<!--说明-->
+	<p class="intro clr6">{$itemall.intro}</p>
+	<!--操作-->
+	<div class="oper">
+		<div class="stat clearfix">
+			<div class="like_wall">
+				<a href="javascript:;" class="J_likeitem like" data-id="{$itemall.id}" <present name="album">data-aid="{$album.id}"</present>></a>
+				<span class="J_like_n">{$itemall.likes}</span>
+			</div>
+			<div class="comment_wall">
+				<a target="_blank" href="{:U('item/index', array('id'=>$itemall['id']))}" class="comment">评论</a>
+				<span><if condition="$itemall['comments'] gt 0">{$itemall.comments}<else />0</if></span>
+			</div>
+		</div>
+		<!--作者-->
+		<a class="avatar" target="_blank" href="{:U('space/index', array('uid'=>$itemall['uid']))}">
+			<img width="32" height="32" data-uid="{$itemall.uid}" alt="" src="{:avatar($itemall['uid'], '32')}"
+			class="J_card avt fl r3">
+		</a>
+	</div>
+	<!--评论-->
+	<notempty name="itemall['comment_list']">
+	<div class="comment_hot_list">
+	<for start="0" end=":C('pin_item_cover_comments')">
+		<notempty name="itemall['comment_list'][$i]">
+			<div class="action">
+				<a class="avatar" target="_blank" href="{:U('space/index', array('uid'=>$itemall['comment_list'][$i]['uid']))}">
+					<img width="32" height="32" data-uid="{$itemall['comment_list'][$i]['uid']}" alt="{$itemall['comment_list'][$i]['uname']}" class="J_card"
+					src="{:avatar($itemall['comment_list'][$i]['uid'], 24)}">
+				</a>
+				<p>
+					<a data-uid="{$itemall['comment_list'][$i]['uid']}" target="_blank" class="J_card n" href="{:U('space/index', array('uid'=>$itemall['comment_list'][$i]['uid']))}">
+						{$itemall['comment_list'][$i]['uname']}
+					</a>
+					:{$itemall['comment_list'][$i]['info']}
+				</p>
+			</div>
+		</notempty>
+	</for>
+	</div>
+	</notempty>
+	<div class="border"></div>
+</div>
+</volist>

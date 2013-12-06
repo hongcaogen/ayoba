@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+<css file="__STATIC__/css/meilishuoi/item.css" />
+</head>
+<body>
+
+<include file="public:header" />
+<!--商品详细-->
+<div style="_padding-left:0;" class="main_wrap pt10 clearfix">
+	<div class="mt10">{:R('advert/index', array(14), 'Widget')}</div>
+	<div class="item_box fl">
+		<div class="info clearfix">
+			<div class="pic">
+				<a rel="nofollow" href="__ROOT__/?m=item&a=tgo&to={:base64_encode($item['url'])}" target="_blank">
+					<img src="{:attach($img_list[0]['url'], 'item')}"
+					alt="{$item.title}">
+				</a>
+			</div>
+			<div class="desc">
+				<h3>
+					<a rel="nofollow" href="__ROOT__/?m=item&a=tgo&to={:base64_encode($item['url'])}" target="_blank">{$item.title}</a>
+				</h3>
+				<div class="now">
+					<a rel="nofollow" href="__ROOT__/?m=item&a=tgo&to={:base64_encode($item['url'])}"
+					target="_blank" class="buy">
+						<b><if condition="$item['price'] gt 0">&yen {$item.price}</if></b>
+					</a>
+					<!--<a data-id="13313315056" id="J_promotion" class="promotion tc" href="javascript:;">查询最新优惠</a>-->
+				</div>
+				<div class="was">
+				</div>
+				<div class="item_like clearfix">
+					<span class="J_like_n span_like">
+						{$item.likes}
+					</span>
+					<a data-id="{$item.id}" class="J_likeitem item_info_like" href="javascript:;">
+						<i></i>
+					</a>
+				</div>
+
+				<div class="J_item2 item_album">
+					<span class="span_album" >
+						专辑
+					</span>
+					<a data-id="{$item.id}" class="J_joinalbum2" href="javascript:;">
+						<i></i>
+					</a>
+				</div>
+
+			</div>
+			<div class="share_open">
+				<!-- Baidu Button BEGIN -->
+				<div class="bdshare_t bds_tools get-codes-bdshare" id="bdshare">
+					<span class="bds_more">
+					</span>
+					<a class="bds_tsina" title="分享到新浪微博" href="#">
+					</a>
+					<a class="bds_qzone" title="分享到QQ空间" href="#">
+					</a>
+					<a class="bds_tqq" title="分享到腾讯微博" href="#">
+					</a>
+					<a class="bds_renren" title="分享到人人网" href="#">
+					</a>
+				</div>
+				<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=706880" ></script>
+				<script type="text/javascript" id="bdshell_js"></script>
+				<script type="text/javascript">
+					document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+				</script>
+				<!-- Baidu Button END -->
+			</div>
+		</div>
+		<!--标签-->
+		<notempty name="item['tag_list']">
+		<div class="tags">
+			<volist name="item['tag_list']" id="tag">
+			<a class="tag" target="_blank" href="{:U('book/index', array('tag'=>urlencode($tag)))}">{$tag}</a>
+			</volist>
+		</div>
+		</notempty>
+		<div data-id="{$item.id}" class="comments clearfix" id="J_comment_area">
+			<h2>
+				{:L('comment_area')}
+				<small id="J_cmt_num"></small>
+			</h2>
+			<div class="comment_list">
+				<ul id="J_cmt_list">
+					<volist name="cmt_list" id="val">
+					<li class="">
+						<a class="avt" target="_blank" href="{:U('space/index', array('uid'=>$val['uid']))}">
+							<img width="25" height="25" src="{:avatar($val['uid'], 25)}" class="J_card avt" data-uid="{$val.uid}">
+						</a>
+						<div class="content">
+							<p>
+								<a target="_blank" href="{:U('space/index', array('uid'=>$val['uid']))}" class="J_card n" data-uid="{$val.uid}">
+									{$val.uname}：
+								</a>
+								{$val.info}
+							</p>
+						</div>
+						<div>
+							<span>
+								{$val.add_time|fdate}
+							</span>
+						</div>
+					</li>
+					</volist>
+				</ul>
+				<div class="page_bar" id="J_cmt_page">{$page_bar}</div>
+			</div>
+			<div class="comment_publish">
+				<a class="avt">
+					<img width="25" height="25" src="{:avatar($visitor['id'], 25)}">
+				</a>
+				<div class="pub_box fl">
+					<textarea def-val="{:L('item_cmt_def')}" id="J_cmt_content" name="content" class="pub_content">{:L('item_cmt_def')}</textarea>
+					<div class="pub_act">
+						<a class="submit fr" id="J_cmt_submit" href="javascript:;">
+							<b>{:L('ok')}</b>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="shop clearfix">
+			<h2 class="hd">
+				<a rel="nofollow" href="__ROOT__/?m=item&a=tgo&to={:base64_encode($item['url'])}"
+				target="_blank">
+					{$item.title}
+				</a>
+			</h2>
+			<a class="buy_btn" rel="nofollow" href="__ROOT__/?m=item&a=tgo&to={:base64_encode($item['url'])}"
+			target="_blank">
+			</a>
+		</div>
+	</div>
+	<div class="item_right fr">
+
+		<div class="user">
+			<div class="user_info">
+				<a target="_blank" class="avatar" href="{:U('space/index', array('uid'=>$item['uid']))}">
+					<img width="25" height="25" src="{:avatar($item['uid'], 33)}" alt="{$item.uname}" class="J_card fl r3" data-uid="{$item.uid}">
+				</a>
+				<a target="_blank" class="name" href="{:U('space/index', array('uid'=>$item['uid']))}">
+					{$item.uname}
+				</a>
+				<br>
+			</div>
+			<div class="time">
+				<if condition="$item['uid'] neq $visitor['id']">
+					<div class="J_follow_bar" data-uid="{$item.uid}">
+						<if condition="$author_ship eq 0">
+                            <a href="javascript:;" class="J_fo_u fo_u_btn">{:L('follow')}</a>
+						<elseif condition="$author_ship eq 1"/>
+                            <span class="fo_u_ok">{:L('followed')}</span><a href="javascript:;" class="J_unfo_u green">{:L('cancel')}</a>
+						<elseif condition="$author_ship eq 2"/>
+                            <span class="fo_u_all">{:L('follow_mutually')}</span><a href="javascript:;" class="J_unfo_u green">{:L('cancel')}</a>
+						</if>
+					</div>
+				</if>
+			</div>
+			<p>
+				<notempty name="item['intro']">{$item.intro}</notempty>
+			</p>
+			<div class="time">
+				<i></i>
+				{$item['add_time']|fdate}
+			</div>
+		</div>
+
+		<div style="margin-left: 0" class="album_item">
+				<div class="header">
+					<h3>
+						<i class="icon-zhuan"></i>
+						<a target="_blank" href="{:U('album/detail', array('id'=>$album['id']))}" title="{$album.title}">
+							{$album.title}
+						</a>
+					</h3>
+				</div>
+				<a target="_blank" href="{:U('album/detail', array('id'=>$album['id']))}" class="imgbox">
+					<img width="200" height="200" alt="{$album.title}" src="{:attach($album['banner'], 'album')}">
+				</a>
+				<div class="bottom">
+					<b title="分享数">
+						{$album.items}
+						<i class="ico-share"></i>
+					</b>
+					<b title="粉丝数">
+						<i id="J_afn_{$album.id}">{$album.follows}</i>
+						<i class="ico-masters"></i>
+					</b>
+					<a target="_blank" data-uid="{$album.uid}" class="J_card fr" href="{:U('space/index', array('uid'=>$album['uid']))}">
+						<img width="30" height="30" alt="{$album.uname}" src="{:avatar($album['uid'], '24')}">
+					</a>
+				</div>
+				<div class="follow followbox">
+					<?php if (M('album_follow')->where(array('uid'=>$visitor['id'], 'album_id'=>$album['id']))->count()) { ?>
+						<span class="fbtn followed followbox_{$album.id}"><b><i class="ico-followed"></i><a data-aid="{$album.id}" class="J_unfollow_album" href="javascript:;">已关注</a></b></span>
+					<?php }else{ ?>
+						<span class="fbtn followbox_{$album.id}"><b><i class="ico-follow"></i><a data-aid="{$album.id}" class="J_follow_album" href="javascript:;">关注</a></b></span>
+					<?php } ?>
+				</div>
+		<script type="text/javascript">
+		<!--
+			var visitor_uid = "<?php echo $visitor['id'];?>";
+			if(visitor_uid){
+				$('.J_follow_album').live('click', function(){
+					var id=$(this).attr('data-aid');
+					$(".followbox_"+id+" i").attr("class","ico-followed");
+				});
+				$('.J_unfollow_album').live('click', function(){
+					var id=$(this).attr('data-aid');
+					$(".followbox_"+id+" i").attr("class","ico-follow");
+				});
+			}
+		//-->
+		</script>
+		</div>
+	</div>
+
+
+	<div class="item_box" style="width:730px;">
+	<notempty name="item_list">
+		<div class="more_tag">
+			<div class="hr"><span></span></div>
+			<div class="slide_show">
+				<h3 class="title">{:L('guess_you_like_title')}</h3>
+			</div>
+			<div class="wall_container clearfix masonry" id="J_waterfall" style="border-style:none;">
+			<!-- 瀑布流显示 -->
+			<include file="public:waterfall" />
+			<!-- 瀑布流显示 end -->
+			</div>
+		</div>
+	</notempty>
+	</div>
+</div>
+
+
+
+<script src="__STATIC__/js/jquery/plugins/jquery.jqzoom.js"></script>
+<script src="__STATIC__/js/jquery/plugins/jquery.jcarousel.js"></script>
+<include file="public:footer" />
+<script src="__STATIC__/js/comment.js"></script>
+</body>
+</html>

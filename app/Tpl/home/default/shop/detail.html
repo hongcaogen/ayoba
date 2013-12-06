@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+<css file="__STATIC__/css/default/shop.css" />
+</head>
+<body>
+<include file="public:header" />
+
+<div class="main_wrap pt20">
+	<!--资讯首页左边-->
+  <div class="shop_profile fl clearfix">
+    <div class="profile clearfix">
+        <img src="__ROOT__/data/upload/shop/{$info.img}" class="thumb">
+        <p><a href="{$info.url}" target="_blank">{$info.name}</a></p>
+        <p><a href="{$info.url}" target="_blank">去这家店逛逛</a></p>
+    </div>
+    <div class="kandian">
+    	<h3>店铺看点</h3>
+        <div class="list clearfix">
+        <volist name="info['tag']" id='tag_list'>
+        	<a href="">{$tag_list}</a>
+        </volist>
+        </div>
+    </div>
+    <div class="guang">
+        <h3>推荐这家店铺的人还在逛 &nbsp;&nbsp;&nbsp;&nbsp; <a href="" class="more">更多>></a></h3>
+        <div class="list clearfix">
+            <div class="item fl">
+				<a href="/shop/show/3028" target="_blank" title="透明叶小泡VIVI日系服饰专卖屋"><img width="80" height="80" src="http://logo.taobaocdn.com/shop-logo/8d/30/T1LVVSXgxhXXb1upjX.jpg"></a><br>
+				<a href="/shop/show/3028" class="link red" target="_blank" title="透明叶小泡VIVI日系服饰专卖屋">透明叶小泡VIVI日系服饰..</a>
+			</div>
+            <div class="item fr">
+				<a href="/shop/show/3028" target="_blank" title="透明叶小泡VIVI日系服饰专卖屋"><img width="80" height="80" src="http://logo.taobaocdn.com/shop-logo/8d/30/T1LVVSXgxhXXb1upjX.jpg"></a><br>
+				<a href="/shop/show/3028" class="link red" target="_blank" title="透明叶小泡VIVI日系服饰专卖屋">透明叶小泡VIVI日系服饰..</a>
+			</div>
+            <div class="item fl">
+				<a href="/shop/show/3028" target="_blank" title="透明叶小泡VIVI日系服饰专卖屋"><img width="80" height="80" src="http://logo.taobaocdn.com/shop-logo/8d/30/T1LVVSXgxhXXb1upjX.jpg"></a><br>
+				<a href="/shop/show/3028" class="link red" target="_blank" title="透明叶小泡VIVI日系服饰专卖屋">透明叶小泡VIVI日系服饰..</a>
+			</div>
+            <div class="item fr">
+				<a href="/shop/show/3028" target="_blank" title="透明叶小泡VIVI日系服饰专卖屋"><img width="80" height="80" src="http://logo.taobaocdn.com/shop-logo/8d/30/T1LVVSXgxhXXb1upjX.jpg"></a><br>
+				<a href="/shop/show/3028" class="link red" target="_blank" title="透明叶小泡VIVI日系服饰专卖屋">透明叶小泡VIVI日系服饰..</a>
+			</div>
+        </div>
+    </div>
+    <div class="kan">
+        <h3>推荐这家店铺MM还在看 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="" class="more">更多>></a></h3>
+        <div class="list clearfix">
+            <a href="">宫廷</a>
+            <a href="">宫廷</a>
+            <a href="">宫廷</a>
+            <a href="">宫廷</a>
+            <a href="">宫廷</a>
+        </div>
+    </div>    
+  </div>
+  
+  <!--资讯首页右边-->
+    <div class="w750 fr detail_wrap">
+        <div class="shop_list clearfix type_pic">
+            <div class="detail_title_wrap clearfix">
+                <div class="detail_title fl">大家推荐的</div>
+                <div class="fr">
+                    <a class="list">列表</a>
+                    <a class="pic hover">海报</a>
+                </div>
+            </div>
+            
+            <div class="good_list">
+            	<volist name="item_list" id="list">
+                <div class="goods_item">            
+                    <a class="goods_pic" title="{$list.title}" href="{:U('item/index',array('id'=>$list['id']))}" target="_blank">
+                    <!--<img src="http://imgtest-dl.meiliworks.com/pic/i/d3/45/c93b2d471f2001e07a077b024d00_800_800.c1.jpg">-->
+                    <img alt="{$list.title}" src="{:attach(get_thumb($list['img'], '_s'), 'item')}">
+                    </a>
+                    <div class="author_wrapper">
+                    by: <a href="{:U('space/index', array('uid'=>$list['uid']))}" target="_blank" title="{$list.uname}">{$list.uname}</a>
+                    </div>                            
+                </div>
+                </volist>
+                <!--<div class="goods_item">            
+                    <a class="goods_pic" title="小Z优品 Z大爱自留奥地利水晶 小碎钻 情侣 签名笔触控笔 盒装" href="/item/46013239" target="_blank">
+                    <img src="http://imgtest-dl.meiliworks.com/pic/i/d3/45/c93b2d471f2001e07a077b024d00_800_800.c1.jpg">
+                    </a>
+                    <div class="author_wrapper">
+                    by: <a href="/person/u/1143960" target="_blank" title="阳光cheerjane">阳光cheerjane</a>
+                    </div>                            
+                </div>
+                <div class="goods_item no_mr">            
+                    <a class="goods_pic" title="小Z优品 Z大爱自留奥地利水晶 小碎钻 情侣 签名笔触控笔 盒装" href="/item/46013239" target="_blank">
+                    <img src="http://imgtest-dl.meiliworks.com/pic/i/d3/45/c93b2d471f2001e07a077b024d00_800_800.c1.jpg">
+                    </a>
+                    <div class="author_wrapper">
+                    by: <a href="/person/u/1143960" target="_blank" title="阳光cheerjane">阳光cheerjane</a>
+                    </div>                            
+                </div>
+                <div class="goods_item">            
+                    <a class="goods_pic" title="小Z优品 Z大爱自留奥地利水晶 小碎钻 情侣 签名笔触控笔 盒装" href="/item/46013239" target="_blank">
+                    <img src="http://imgtest-dl.meiliworks.com/pic/i/d3/45/c93b2d471f2001e07a077b024d00_800_800.c1.jpg">
+                    </a>
+                    <div class="author_wrapper">
+                    by: <a href="/person/u/1143960" target="_blank" title="阳光cheerjane">阳光cheerjane</a>
+                    </div>                        
+                </div>
+                <div class="goods_item">            
+                    <a class="goods_pic" title="小Z优品 Z大爱自留奥地利水晶 小碎钻 情侣 签名笔触控笔 盒装" href="/item/46013239" target="_blank">
+                    <img src="http://imgtest-dl.meiliworks.com/pic/i/d3/45/c93b2d471f2001e07a077b024d00_800_800.c1.jpg">
+                    </a>
+                    <div class="author_wrapper">
+                    by: <a href="/person/u/1143960" target="_blank" title="阳光cheerjane">阳光cheerjane</a>
+                    </div>                            
+                </div>
+                <div class="goods_item no_mr">            
+                    <a class="goods_pic" title="小Z优品 Z大爱自留奥地利水晶 小碎钻 情侣 签名笔触控笔 盒装" href="/item/46013239" target="_blank">
+                    <img src="http://imgtest-dl.meiliworks.com/pic/i/d3/45/c93b2d471f2001e07a077b024d00_800_800.c1.jpg">
+                    </a>
+                    <div class="author_wrapper">
+                    by: <a href="/person/u/1143960" target="_blank" title="阳光cheerjane">阳光cheerjane</a>
+                    </div>                            
+                </div>-->
+                
+                <div class="page_bar">{$page}</div>
+        </div>
+        
+        <div class="shop_list clearfix type_list" style="display:none;">
+        	<volist name="item_list" id="list">
+            <div class="goods_item clearfix">            
+                <div class="fl">
+                    <a href=""><img alt="{$list.title}" src="{:attach(get_thumb($list['img'], '_s'), 'item')}"></a>
+                    <p>昨天 {$list.add_time|date="Y-m-d H:i:s",###}  来自网站</p>
+                </div>
+                <div class="fr">
+                    <a href="{:U('item/index',array('id'=>$list['id']))}" class="goods_title" target="_blank">{$list.title}</a>
+                    <div>
+                        <a href="{:U('space/index', array('uid'=>$list['uid']))}" target="_blank">
+						      <!--<img src="http://imgtest.meiliworks.com/ap/c/85/d8/29159f6fce8a702197722d88cb90_221_221.c1.jpg" alt="Fiancee____" style="width:32px;height:32px;border:none;">-->
+                              <img alt="{$list.uname}" src="{:avatar($list['uid'], 32)}" class="J_card r5">
+						  </a>
+                          {$list.uname}
+                          &nbsp;&nbsp;
+                          推荐说
+                    </div>
+                </div>                                       
+            </div>       
+            </volist>
+            <!--<div class="goods_item clearfix">            
+                <div class="fl">
+                    <a href=""><img src="http://imgtest-dl.meiliworks.com/pic/i/d3/45/c93b2d471f2001e07a077b024d00_800_800.c1.jpg"/></a>
+                    <p>昨天 10:00  来自网站</p>
+                </div>
+                <div class="fr">
+                    <a href="" class="goods_title">小Z优品 韩国明星款韩剧想你尹恩惠花朵刻纹金属三件套戒指女韩版</a>
+                    <div>
+                        <a href="/person/u/33398387" target="_blank">
+						      <img src="http://imgtest.meiliworks.com/ap/c/85/d8/29159f6fce8a702197722d88cb90_221_221.c1.jpg" alt="Fiancee____" style="width:32px;height:32px;border:none;">
+						  </a>
+                          &nbsp;&nbsp;
+                          推荐说
+                    </div>
+                </div>                                       
+            </div>    -->
+            <div class="page_bar">{$page}</div>
+        </div>
+        
+        
+        </div> 
+        
+    </div>  
+</div>
+
+<include file="public:footer" />
+</body>
+</html>
+<script>
+$(function(){
+	$(".list").click(function(){
+		$(".list").addClass("hover");
+		$(".pic").removeClass("hover");
+		$(".type_list").show();
+		$(".good_list").hide();
+	});	
+	$(".pic").click(function(){
+		$(".list").removeClass("hover");
+		$(".pic").addClass("hover");		
+		$(".good_list").show();
+		$(".type_list").hide();
+	});
+});
+</script>

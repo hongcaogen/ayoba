@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+<css file="__STATIC__/css/default/news.css" />
+</head>
+<body>
+<include file="public:header" />
+
+<div class="main_wrap pt20">
+    <!--列表左边-->
+    <div class="w750 article_box fl">
+    	<div class="title"><a href="{:U('news/index')}">资讯首页</a>
+                >><a href="{:U('news/lists',array('cate_id'=>$cate_id))}">{$cate_name.pid.name}</a>
+                >><a href="{:U('news/lists',array('cate_id'=>$cate_id))}">{$cate_name.name}</a>            
+        </div>
+        <div class="article_lists">
+        	<ul>
+            	<volist name="shop_list" id="list">
+                <li><p><a href="{:U('news/detail',array('id'=>$list['id']))}">{$list.name}</a></p><em>[{$list.add_time|date="Y-m-d",###}]</em></li>
+                </volist>
+            </ul>
+         	<div class="page_bar">{$page}</div>
+        </div>
+    </div>
+    <!--列表右边-->
+    <div class="w200 article_box fr">
+    <div class="title">店铺分类</div>
+        <dl class="newsbar">
+            <volist name="cate_list" id="lists">
+            <dt>{$lists.name}</dt>
+            <dd>
+            <volist name="lists.chrid" id="list">
+            <a href="{:U('shop/lists',array('cate_id'=>$list['id']))}" >{$list.name}</a>
+            </volist>
+            </dd>
+    
+            </volist>
+        </dl>
+      </div>
+</div>
+
+<include file="public:footer" />
+</body>
+</html>

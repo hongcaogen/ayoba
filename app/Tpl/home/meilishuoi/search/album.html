@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+</head>
+<body>
+<include file="public:header" />
+
+<div class="main_wrap pt20">
+    <include file="top" />
+
+    <present name="album_list">
+	<!-- cate_sort -->
+	<div class="cate_sort pt10 clearfix">
+		<h1 class="fl">{$q|default=L('search')}</h1>
+		<div class="sort fl">
+			<strong>{:L('sort_order')}：</strong>
+			<a href="{:U('search/index', array('q'=>$q, 't'=>$t, 'sort'=>'hot'))}" <if condition="$sort eq 'hot'">class="active"</if>>{:L('sort_hot')}</a>
+			<a href="{:U('search/index', array('q'=>$q, 't'=>$t, 'sort'=>'new'))}" <if condition="$sort eq 'new'">class="active"</if>>{:L('sort_new')}</a>
+		</div>
+	</div>
+	<!-- cate_sort end -->
+
+<div class="index_cate">
+		<volist name="album_list" id="album">
+			<div data-aid="{$album.id}" class="J_album_item album_item">
+				<div class="header">
+					<h3>
+						<i class="icon-zhuan"></i>
+						<a target="_blank" href="{:U('album/detail', array('id'=>$album['id']))}" title="{$album.title}">
+							{$album.title}
+						</a>
+					</h3>
+				</div>
+				<a target="_blank" href="{:U('album/detail', array('id'=>$album['id']))}" class="imgbox">
+					<img width="200" height="200" alt="{$album.title}" src="{:attach(get_thumb($album['cover']['0']['img'], '_m'), 'item')}">
+				</a>
+				<div class="bottom">
+					<b title="分享数">
+						{$album.items}
+						<i class="ico-share"></i>
+					</b>
+					<b title="粉丝数">
+						<i id="J_afn_{$album.id}">{$album.follows}</i>
+						<i class="ico-masters"></i>
+					</b>
+					<a target="_blank" data-uid="{$album.uid}" class="J_card fr" href="{:U('space/index', array('uid'=>$album['uid']))}">
+						<img width="30" height="30" alt="{$album.uname}" src="{:avatar($album['uid'], '24')}">
+					</a>
+				</div>
+				<div class="follow followbox">
+					<notempty name="visitor">
+						<?php if (M('album_follow')->where(array('uid'=>$visitor['id'], 'album_id'=>$album['id']))->count()) { ?>
+						<span class="fbtn followed followbox_{$album.id}"><b><i class="ico-followed"></i><a data-aid="{$album.id}" class="J_unfollow_album" href="javascript:;">已关注</a></b></span>
+						<?php }else{ ?>
+						<span class="fbtn followbox_{$album.id}"><b><i class="ico-follow"></i><a data-aid="{$album.id}" class="J_follow_album" href="javascript:;">关注</a></b></span>
+						<?php } ?>
+					</notempty>
+					</a>
+				</div>
+			</div>
+		</volist>
+		<script type="text/javascript">
+					<!--
+						$('.J_follow_album').live('click', function(){
+							var id=$(this).attr('data-aid');
+							$(".followbox_"+id+" i").attr("class","ico-followed");
+							$(this).text("已关注");
+						});
+						$('.J_unfollow_album').live('click', function(){
+							var id=$(this).attr('data-aid');
+							$(".followbox_"+id+" i").attr("class","ico-follow");
+							$(this).text("关注");
+						});
+					//-->
+		</script>
+	</div>
+    <div class="page_bar">{$page_bar}</div>
+    <else/>
+    <div class="search_result_none">
+        <h1>{:sprintf(L('search_no_content'),$q)}</h1>
+    </div>
+    </present>
+    
+</div>
+<include file="public:footer" />
+</body>
+</html>

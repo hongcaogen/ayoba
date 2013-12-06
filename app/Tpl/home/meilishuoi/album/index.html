@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+<css file="__STATIC__/css/meilishuoi/album.css" />
+</head>
+<body>
+<include file="public:header" />
+
+<div class="main_wrap">
+    <div class="album_top">
+        {:R('advert/index', array(3), 'Widget')}
+        
+        <div class="album_daren fl">
+            <h3>{:L('album_daren')}</h3>
+            <ul>
+                <pin:user type="lists" field="id,username,albums,fans" where="daren=1" num="4" cache="3600">
+                <volist name="data" id="val">
+                <li> 
+                    <a href="{:U('space/index', array('uid'=>$val['id']))}" target="_blank"><img alt="{$val.username}" src="{:avatar($val['id'])}" class="J_card fl r3" data-uid="{$val.id}"></a>
+                    <div class="album_daren_info">
+                        <p class="user_name"><a href="{:U('space/index', array('uid'=>$val['id']))}" class="J_card uname" data-uid="{$val.id}" target="_balnk">{$val.username}</a></p>
+                        <p class="user_info">
+                            <span>{:L('album_num')}:</span>
+                            <a href="{:U('space/album', array('uid'=>$val['id']))}" target="_blank">{$val.albums}</a>&nbsp;
+                            <span>{:L('fans_num')}:</span>
+                            <a href="{:U('space/fans', array('uid'=>$val['id']))}" target="_blank">{$val.fans}</a>
+                        </p>
+                  </div>
+                </li>
+                </volist>
+                </pin:user>
+            </ul>
+        </div>
+        <div class="album_add fl">
+            <p class="title">{:R('advert/index', array(6), 'Widget')}</p>
+            <a href="javascript:;" title="{:L('create_album')}" class="J_createalbum_btn reco_album_link r5">{:L('create_album')}</a>
+            <p class="mgmg">{:R('advert/index', array(7), 'Widget')}</p>
+        </div>
+    </div>
+
+
+	<!-- cate_sort -->
+	<div class="cate_sort pt10 clearfix" style="border-style: solid;border-width: 1px;">
+		<h1 class="fl" style="margin:0 50px 0 20px;">{$cate_info.name|default=L('album')}</h1>
+		<div class="sort fl" style="border-right: 0px solid #D7D7D7;">
+			<strong>{:L('sort_order')}：</strong>
+			<a href="{:U('album/index', array('sort'=>'hot'))}" <if condition="$sort eq 'hot'">class="active"</if>>{:L('sort_hot')}</a>
+			<a href="{:U('album/index', array('sort'=>'new'))}" <if condition="$sort eq 'new'">class="active"</if>>{:L('sort_new')}</a>
+		</div>
+	</div>
+	<!-- cate_sort end -->
+	<div class="album-nav" style="margin-top:10px;padding-bottom: 10px;">
+		<a href="{:U('album/index')}" title="{:L('all')}" <if condition="$cate_info.id eq ''">class="active album-tag"<else />class="album-tag"</if>>{:L('all')}</a>
+		<pin:album type="cate" return="cate_list">
+		<volist name="cate_list" id="cate">
+		<a href="{:U('album/index',array('cid'=>$cate['id']))}" title="{$cate.name}" <if condition="$cate_info.id eq $cate['id']">class="active album-tag"<else />class="album-tag"</if>>{$cate.name}</a>
+		</volist>
+		</pin:album>
+	</div>
+
+	<!-- 专辑显示 -->
+	<div class="index_cate">
+		<volist name="album_list" id="album">
+			<div data-aid="{$album.id}" class="J_album_item album_item">
+				<div class="header">
+					<h3>
+						<i class="icon-zhuan"></i>
+						<a target="_blank" href="{:U('album/detail', array('id'=>$album['id']))}" title="{$album.title}">
+							{$album.title}
+						</a>
+					</h3>
+				</div>
+				<a target="_blank" href="{:U('album/detail', array('id'=>$album['id']))}" class="imgbox">
+					<img width="200" height="200" alt="{$album.title}" src="{:attach(get_thumb($album['cover']['0']['img'], '_m'), 'item')}">
+				</a>
+				<div class="bottom">
+					<b title="分享数">
+						{$album.items}
+						<i class="ico-share"></i>
+					</b>
+					<b title="粉丝数">
+						<i id="J_afn_{$album.id}">{$album.follows}</i>
+						<i class="ico-masters"></i>
+					</b>
+					<a target="_blank" data-uid="{$album.uid}" class="J_card fr" href="{:U('space/index', array('uid'=>$album['uid']))}">
+						<img width="30" height="30" alt="{$album.uname}" src="{:avatar($album['uid'], '24')}">
+					</a>
+				</div>
+				<div class="follow followbox">
+					<?php if (M('album_follow')->where(array('uid'=>$visitor['id'], 'album_id'=>$album['id']))->count()) { ?>
+						<span class="fbtn followed followbox_{$album.id}"><b><i class="ico-followed"></i><a data-aid="{$album.id}" class="J_unfollow_album" href="javascript:;">已关注</a></b></span>
+					<?php }else{ ?>
+						<span class="fbtn followbox_{$album.id}"><b><i class="ico-follow"></i><a data-aid="{$album.id}" class="J_follow_album" href="javascript:;">关注</a></b></span>
+					<?php } ?>
+				</div>
+			</div>
+		</volist>
+		<script type="text/javascript">
+		<!--
+			var visitor_uid = "<?php echo $visitor['id'];?>";
+			if(visitor_uid){
+				$('.J_follow_album').live('click', function(){
+					var id=$(this).attr('data-aid');
+					$(".followbox_"+id+" i").attr("class","ico-followed");
+				});
+				$('.J_unfollow_album').live('click', function(){
+					var id=$(this).attr('data-aid');
+					$(".followbox_"+id+" i").attr("class","ico-follow");
+				});
+			}
+		//-->
+		</script>
+	</div>
+	<div class="page_bar">{$page_bar}</div>
+	<!-- 专辑显示 end -->
+</div>
+
+<include file="public:footer" />
+</body>
+</html>

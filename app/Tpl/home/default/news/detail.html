@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+<css file="__STATIC__/css/default/news.css" />
+</head>
+<body>
+<include file="public:header" />
+
+<div class="main_wrap pt20">
+    <div class="w750 fl">
+        <div class="article_box">
+        	<div class="title"><a href="{:U('news/index')}">资讯首页</a>
+                >><a href="{:U('news/lists',array('cate_id'=>$info['cate_id']))}">{$cate_name.pid.name}</a>
+                >><a href="{:U('news/lists',array('cate_id'=>$info['cate_id']))}">{$cate_name.name}</a>         
+            </div>
+            <div class="content">
+                <!--=====文章详细=====-->
+                <div>
+                	<h1>{$info.title}</h1>
+                    <p style="text-align:center;color:#999;">发布时间:{$info.add_time|date="Y-m-d",###}&nbsp;&nbsp;作者:{$info.author}&nbsp;&nbsp;浏览次数：{$info.hits}</p>
+                </div>
+                <div class="news_content">
+                    &nbsp;&nbsp;{$info.info}
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="article_box clearfix">
+                <div class="title">文章评论</div>
+                
+                <div id="J_comment_area" class="comment_area"  data-id="{$info.id}">
+                    <h3>评论区</h3>
+                    <div class="comment_publish">
+                        <div class="pub_box"><textarea id="J_cmt_content" name="content" class="pub_content" def-val="这篇文章太给力啦。。。。。。。">这篇文章太给力啦。。。。。。。</textarea></div>
+                        <div class="pub_act"><a href="javascript:;" id="J_cmt_submit" class="submit r3 fr">{:L('ok')}</a></div>
+                    </div>
+                    <div class="comment_list">
+                        <ul id="J_cmt_list">
+                            <volist name="cmt_list" id="val">
+                            <li> 
+                                <a href="{:U('space/index', array('uid'=>$val['uid']))}" target="_blank"><img src="{:avatar($val['uid'], 48)}" class="J_card avt" data-uid="{$val.uid}" /></a>
+                                <p><a href="{:U('space/index', array('uid'=>$val['uid']))}" class="J_card n" data-uid="{$val.uid}" target="_blank">{$val.uname}</a></p>
+                                <p>{$val.info}<span>&nbsp;&nbsp;&nbsp;{$val.add_time|fdate}</span></p>
+                            </li>
+                            </volist>
+                        </ul>
+                        <div id="J_cmt_page" class="page_bar">{$page_bar}</div>
+                    </div>
+                </div>
+                
+            </div>
+	</div>
+    
+    <div class="w200 article_box fr">
+        <div class="title">文章分类</div>
+        <dl class="newsbar">
+            <volist name="cate_list" id="lists">
+            <dt>{$lists.name}</dt>
+            <dd>
+            <volist name="lists.chrid" id="list">
+            <a href="{:U('news/lists',array('cate_id'=>$list['id']))}" target="_blank">{$list.name}</a>
+            </volist>
+            </dd>
+    
+            </volist>
+        </dl>
+     </div>
+</div>
+
+<include file="public:footer" />
+<script src="__STATIC__/js/article_comment.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!-- 尾部开始 -->
+<div class="w960">{:R('advert/index', array(11), 'Widget')}</div>
+
+<!-- 页尾 -->
+<div class="footer_wrap rt10">
+    <div class="footer_links clearfix">
+        <!-- <a href="" class="foot_logo"></a>-->
+        <dl class="splendid">
+            <dt class="ft-find">
+                {:L('site_nav')}
+            </dt>
+			<pin:nav type="lists" style="bottom">
+            <volist name="data" id="val">
+            <dd>
+                <a href="{$val.link}" <if condition="$val.target eq 1">target="_blank"</if>>
+                    {$val.name}
+                </a>
+            </dd>
+           </volist>
+            </pin:nav>
+        </dl>
+        <dl class="aboutus">
+            <dt class="ft-abouts">
+                {:L('aboutus')}
+            </dt>
+			<pin:article type="cate" cateid="1">
+            <volist name="data" id="val">
+            <dd>
+                <a target="_blank" href="{:U('aboutus/index', array('id'=>$val['id']))}">
+                    {$val.name}
+                </a>
+            </dd>
+            </volist>
+            </pin:article>
+        </dl>
+        <div class="footer_logo"><!-- LOGO 图标 --></div>
+		<!-- 关注我们 -->
+        <i id="followguangjie_gzwm">{:R('advert/index', array(8), 'Widget')}</i>
+		<script type="text/javascript">
+		<!--
+			$("#followguangjie_gzwm dl").attr("class","followguangjie");
+			$("#followguangjie_gzwm dl dt").attr("class","ft-follow");
+		//-->
+		</script>
+		<!-- 关注我们 end -->
+        <dl class="flinks_bottom">
+            <dt class="ft-flinks">
+                {:L('flink')}
+            </dt>
+			<pin:flink type="lists" num="5" cache="3600">
+            <volist name="data" id="val">
+            <dd>
+                <a target="_blank" href="{$val.url}">
+                    {$val.name}
+                </a>
+            </dd>
+            </volist>
+            </pin:flink>
+            <dd>
+                <a target="_blank" class="more" href="{:U('aboutus/flink')}">
+                    {:L('more')}...
+                </a>
+            </dd>
+        </dl>
+    </div>
+    <div class="company clearfix">
+
+        <span class="copyright">
+            Powered by 
+        </span>
+        <span>
+            <a href="__ROOT__/" class="beian" target="_blank">爱优科技</a> 
+        </span>
+        <span>
+            <a title="爱优芭" href="__ROOT__/">
+				爱优芭--快乐婚恋，快乐购
+            </a>
+        </span>
+		<span>
+                Copyright 2010-2012
+        </span>
+        <span>
+		   <a href="__ROOT__/" class="beian" target="_blank">{:C('pin_site_name')}</a>
+        </span>
+        <span>
+			<a href="http://www.miibeian.gov.cn" class="beian" target="_blank">{:C('pin_site_icp')}</a>
+        </span>
+        <span>
+			{:C('pin_statistics_code')}
+        </span>
+		<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000175384'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000175384%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    </div>
+
+    <!--div class="w960 tc mt10 clearfix">
+        <a href="http://webscan.360.cn/index/checkwebsite/url/meilishuoi.com">
+            <img width="127" height="47" border="0" 360网站安全="" alt="" src="http://img.webscan.360.cn/status/pai/hash/23e1b43fd5d3cd4f9f3ab5eedc2fcca1">
+        </a>
+    </div-->
+</div>
+<!-- 页尾 end -->
+
+<!-- 返回顶部 -->
+<div class="return_top" id="J_returntop">
+	<a class="gotop" href="#J_m_head"></a>
+	<span class="history J_add_bookmark"></span>
+</div>
+<!-- 返回顶部 end -->
+
+<!-- 尾部 end -->
+<script>
+/*js 添加到收藏夹, 函数 AddFavorite(兼容IE,FF,OP)*/
+$('.J_add_bookmark').click(function(){
+	AddFavorite(window.location,document.title);
+});
+function AddFavorite(sURL, sTitle) {
+	try {
+		window.external.addFavorite(sURL, sTitle);
+	} catch (e) {
+		try {
+			window.sidebar.addPanel(sTitle, sURL, "");
+		} catch (e) {
+			alert("您的浏览器不支持点击添加，请按下 Ctrl + D 添加到收藏夹");
+		}
+	}
+}
+
+var PINER = {
+    root: "__ROOT__",
+    uid: "<?php echo $visitor['id'];?>", 
+    async_sendmail: "<?php echo $async_sendmail;?>",
+    config: {
+        wall_distance: "<?php echo C('pin_wall_distance');?>",
+        wall_spage_max: "<?php echo C('pin_wall_spage_max');?>"
+    },
+    //URL
+    url: {}
+};
+//语言项目
+var lang = {};
+<volist name=":L('js_lang')" id="val">lang.{$key} = "{$val}";</volist>
+</script>
+<pin:load type="js" href="__STATIC__/js/jquery/plugins/jquery.tools.min.js
+,__STATIC__/js/jquery/plugins/jquery.masonry.js
+,__STATIC__/js/jquery/plugins/formvalidator.js
+,__STATIC__/js/fileuploader.js
+,__STATIC__/js/pinphp.js
+,__STATIC__/js/front.js
+,__STATIC__/js/dialog.js
+,__STATIC__/js/wall.js
+,__STATIC__/js/item.js
+,__STATIC__/js/user.js
+,__STATIC__/js/album.js" />

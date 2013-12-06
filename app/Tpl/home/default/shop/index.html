@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+<css file="__STATIC__/css/default/shop.css" />
+</head>
+<body>
+<include file="public:header" />
+
+<div class="main_wrap pt20 clearfix">
+    <img src="__ROOT__/data/upload/banner.jpg"/>
+	<!--资讯首页左边-->
+    <div class="shop_cat_box fl">        
+        <a href="{:U('shop/lists')}" class="level_1">全部精选</a>
+        <dl class="newsbar">
+            <volist name="cate_list" id="lists">
+                <a href="{:U('shop/index',array('cate_id'=>$lists['id']))}" class="level_1 h24 hover">{$lists.name}</a>   
+                <div class="level_2 clearfix">
+                    <volist name="lists.chrid" id="list">
+                    <a href="{:U('shop/index',array('cate_id'=>$list['id']))}">{$list.name}</a>
+                    </volist> 
+                </div>
+            </volist>
+        </dl>
+    </div>
+  
+  <!--资讯首页右边-->
+  <div class="w750 fr">
+      <div class="shop_box clearfix">	              	
+            <div class="shop_list clearfix">
+                <volist name="shop_list" id="shop_lists">
+                <a href="{:u('shop/detail',array('id'=>$shop_lists['id']))}" class="item fl">
+                    <div class="title h24">{$shop_lists['name']}</div>
+                    <div class="recommend">推荐人数:<span>{$shop_lists['share_count']}</span></div>
+                    <div class="thumb">
+                    	<if condition="$shop_lists['item'] neq 'NULL' ">
+                    	<volist name="shop_lists['item']" id="item_list">
+                        <img src="{$item_list.img}" />
+                        </volist>
+                        <else />
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                        </if>
+                    </div>
+                </a>   
+                </volist>
+                
+                <!--<a href="" class="item fr">
+                    <div class="title h24">标题</div>
+                    <div class="recommend">推荐人数:<span>100</span></div>
+                    <div class="thumb">
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                    </div>
+                </a>
+                <a href="" class="item fl">
+                    <div class="title h24">标题</div>
+                    <div class="recommend">推荐人数:<span>100</span></div>
+                    <div class="thumb">
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                    </div>
+                </a>
+                <a href="" class="item fr">
+                    <div class="title h24">标题</div>
+                    <div class="recommend">推荐人数:<span>100</span></div>
+                    <div class="thumb">
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                        <img src="__ROOT__/data/upload/item/1301/31/5109fb15b55e0.jpg"/>
+                    </div>
+                </a>-->
+                <div class="page_bar">{$page}</div>
+            </div>	
+        </div>
+    </div>
+</div>
+
+<include file="public:footer" />
+</body>
+</html>

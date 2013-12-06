@@ -1,0 +1,29 @@
+<div class="fl" id="focus_slide">
+    <ul class="focus_slide_items">
+        <volist name="ad_list" id="ad">
+        <li class="focus_slide_item">
+            {$ad.html}
+			<notempty name="ad['extimg']">
+            <div class="author">
+				<a><img src="__UPLOAD__/advert/{$ad.extimg}" class="fl r5"></a>
+                <div class="info">
+                    <p class="title">{$ad.name}</p>
+                    <p class="desc">{$ad.desc}</p>
+                </div>
+            </div>
+			</notempty>
+        </li>
+        </volist>
+    </ul>
+</div>
+
+<div id="focus_slide_btn">
+    <ul>
+        <li class="c">●</li>
+    </ul>
+</div>
+<script>
+$(function(){
+	$.pinphp.photo_slide('focus_slide', 'focus_slide_btn', 'focus_slide_item', 640);
+});
+</script>

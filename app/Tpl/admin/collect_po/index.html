@@ -1,0 +1,87 @@
+<include file="public:header" />
+<!--PinPHP Open采集-->
+<div class="subnav">
+    <h1 class="title_2 line_x">PinPHP Open采集</h1>
+</div>
+<div class="pad_lr_10">
+    <form id="J_alimama_form" name="searchform" method="get" >
+    <table width="100%" cellspacing="0" class="table_form">
+        <tbody>
+            <tr>
+                <th width="150">商品分类：</th>
+                <td>
+                    <select class="J_pocats mr10">
+                        <option value="0">--{:L('all')}--</option>
+                        <volist name="item_cate" id="cate">
+                        <option value="{$cate.id}">{$cate.name}</option>
+                        </volist>
+                    </select>
+                    <input type="hidden" id="J_cid" name="cid">
+                    <span class="gray ml10">{:L('tbk_item_cate_desc')}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>{:L('keyword')}：</th>
+                <td>
+                    <input name="keyword" type="text" class="input-text" size="40" />
+                    <span class="gray ml10">{:L('tbk_keyword_desc')}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>{:L('tbk_item_price')}：</th>
+                <td>
+                    <input type="text" name="start_price" size="8" class="input-text" /> - 
+                    <input type="text" name="end_price" size="8" class="input-text" /> {:L('price_unit')} 
+                    <span class="gray ml10">{:L('tbk_item_price_desc')}</span>
+                </td>
+            </tr>
+            <tr>
+                <th>{:L('item_like_init')}：</th>
+                <td>
+                    <select name="like_init">
+                        <option value="0">{:L('item_like_default')}</option>
+                        <option value="100">0-100</option>
+                        <option value="500">0-500</option>
+                        <option value="1000">0-1000</option>
+                        <option value="5000">0-5000</option>
+                        <option value="volume">{:L('tbk_item_volume')}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <input type="hidden" name="g" value="admin" />
+                    <input type="hidden" name="m" value="collect_po" />
+                    <input type="hidden" name="a" value="search" />
+                    <input type="submit" name="search" class="btn btn_submit mr10" value="{:L('search_filter')}" />
+                    <input type="button" name="import" class="J_showdialog btn" value="{:L('import_db')}" data-uri="{:U('collect_alimama/batch_publish')}" data-id="batch_publish" data-title="{:L('import_db')}" data-width="450" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+</div>
+<include file="public:footer" />
+<script>
+$(function(){
+    var uri = "{:U('collect_po/ajax_get_pocats')}";
+    $('.J_pocats').die('change').live('change', function(){
+        var _this = $(this),
+            _cid = _this.val();
+        _this.nextAll('.J_tbcats').remove();
+        $.getJSON(uri, {pid:_cid}, function(result){
+            if(result.status == '1'){
+                var _childs = $('<select class="J_pocats mr10"><option value="0">--'+lang.all+'--</option></select>')
+                for(var i=0; i<result.data.length; i++){
+                    $('<option value="'+result.data[i].id+'">'+result.data[i].name+'</option>').appendTo(_childs);
+                }
+                _childs.insertAfter(_this);
+            }
+        });
+        $('#J_cid').val(_cid);
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!--头部开始-->
+<!-- 页头 -->
+<div class="header_wrap">
+    <div id="J_m_head" class="header_box">
+	
+        <div class="head_logo fl">
+                <a href="/" class="logo_b fl" title="爱优芭">爱优芭</a>           
+        </div>
+		<div class="head_user fr">
+		<notempty name="visitor">
+            <ul class="head_user_op">
+                <!--li class="mr10"> 
+                    <a class="J_shareitem_btn share_btn" href="javascript:;" title="{:L('share')}"></a>
+                </li-->
+                <li class="J_down_menu_box mb_info pos_r">
+                    <a href="{:U('space/index', array('uid'=>$visitor['id']))}" class="mb_name">
+                        <img class="mb_avt r3" src="{:avatar($visitor['id'], 24)}">
+                        {$visitor.username}
+                    </a>
+                    <ul class="J_down_menu s_m pos_a">
+                        <li><a href="{:U('space/index')}">{:L('cover')}</a></li>
+                        <li><a href="{:U('user/index')}">{:L('personal_settings')}</a></li>
+                        <li><a href="{:U('user/bind')}">{:L('user_bind')}</a></li>
+                        <li><a href="{:U('user/logout')}">{:L('logout')}</a></li>
+                    </ul>
+                </li>
+                <li><a class="libg feed" href="{:U('space/me')}">{:L('feed')}</a></li>
+                <li><a class="libg album" href="{:U('space/album')}">{:L('album')}</a></li>
+                <li><a class="libg like" href="{:U('space/like')}">{:L('like')}</a></li>
+                <li class="J_down_menu_box my_shotcuts pos_r">
+                    <a class="libg msg" href="javascript:;">{:L('message')}<span id="J_msgtip"></span></a>
+                    <ul class="J_down_menu s_m n_m pos_a">
+                        <li><a href="{:U('space/atme')}">{:L('talk')}<span id="J_atme"></span></a></li>
+                        <li><a href="{:U('message/index')}">{:L('my_msg')}<span id="J_msg"></span></a></li>
+                        <li><a href="{:U('message/system')}">{:L('system_msg')}<span id="J_system"></span></a></li>
+                        <li><a href="{:U('space/fans')}">{:L('my_fans')}<span id="J_fans"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+		<else />
+            <ul class="login_mod">
+				<volist name="oauth_list" id="val">
+				<li class="fl">
+					<a href="{:U('oauth/index', array('mod'=>$val['code']))}" class="login_bg weibo_login">
+					<img src="__STATIC__/images/oauth/{$val.code}/icon.png" alt="{$val.name}" width="16" height="16" />{$val.name}</a>
+				</li>
+				</volist>
+				<li class="fl">
+					<a class="other_login" href="{:U('user/login')}">{:L('login')}</a>
+				</li>
+				<li class="fl"style="border-right: medium none;">
+					<a class="other_login" href="{:U('user/register')}">{:L('register')}</a>
+				</li>
+            </ul>
+		</notempty>
+		</div>
+    </div>
+</div>
+<!-- 页头 end -->
+
+<!-- 导航 -->
+<div id="J_m_nav" class="clearfix" style="width:100%;">
+    <div class="nav_bg">
+        <ul class="nav_box">
+			<li>
+                <a style="border:0" href="__ROOT__/" <if condition="$nav_curr eq 'index'">class="active"</if> >
+					{:L('index_page')}
+                </a>
+            </li>
+            <pin:nav type="lists" style="main">
+            <volist name="data" id="val">
+			<if condition="$val['alias'] eq 'cate'">
+				<li>
+			     
+				<dl class="navi">
+					<pin:itemcate type="lists" field="id,name" where="pid=0 and is_index=1 and status=1" order="ordid ASC" cache="3600">
+					<volist name="data" id="header_itemcate">
+							<dd>
+								<span></span>
+								<a href="{:U('book/cate', array('cid'=>$header_itemcate['id']))}" class="<if condition="$_GET['cid'] eq $header_itemcate['id']">active</if>">
+									{$header_itemcate.name}
+								</a>
+							</dd>
+					</volist>
+					</pin:itemcate>
+					<span></span>
+				</dl>
+				</li>
+			<else />
+				<li>
+					<a href="{$val.link}" class="<if condition="$nav_curr eq $val['alias']">active</if>" <if condition="$val.target eq 1">target="_blank"</if>>
+						{$val.name}
+					</a>
+				</li>
+			</if>
+            </volist>
+            </pin:nav>
+			
+            <li class="search">
+                <form action="__ROOT__/" method="get" target="_blank" class="form_search">
+					<input type="hidden" name="m" value="search">
+                    <input type="text" autocomplete="off" def-val="{:C('pin_default_keyword')}" value="{:C('pin_default_keyword')}" class="text r5"
+                    name="q">
+                    <input type="submit" class="submit" value="搜索">
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 导航 end -->
+<!-- 头部开始 end -->

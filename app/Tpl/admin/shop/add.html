@@ -1,0 +1,92 @@
+<include file="public:header" />
+<!--添加文章-->
+<form id="info_form" action="{:U('shop/add')}" method="post" enctype="multipart/form-data">
+<div class="pad_lr_10">
+	<div class="col_tab">
+		<div class="J_panes">
+			<div class="content_list pad_10">
+				<table width="100%" cellspacing="0" class="table_form">
+					<tr>
+						<th width="120">店铺分类 :</th>
+						<td><select class="J_cate_select mr10" data-pid="0" data-uri="{:U('shop_cate/ajax_getchilds')}" data-selected=""></select><input type="hidden" name="cate_id" id="J_cate_id" value="" /></td>
+					</tr>
+		            <tr>
+						<th>店铺名称 :</th>
+						<td>
+							<input type="text" name="name" class="input-text" id="J_title" class="input-text" size="50">
+		                </td>
+					</tr>
+		            <tr>
+						<th>{:L('tag')} :</th>
+						<td>
+		                	<input type="text" name="tag" id="J_tags" class="input-text" size="50">
+                            <span>标签之间 用空格 隔开</span>
+		                </td>
+					</tr>
+                    <tr>
+						<th>店铺连接 :</th>
+						<td>
+							<input type="text" name="url" id="J_title" class="input-text" size="50">
+		                </td>
+					</tr>
+		            <tr>
+						<th>{:L('article_img')} :</th>
+						<td><input type="file" name="img" id="img" class="input-text"  style="width:200px;" /></td>
+		 			</tr>
+					<tr>
+						<th>是否推荐 :</th>
+		 				<td>
+		                	<label><input type="radio" name="is_best" class="radio_style" value="1"> {:L('yes')} </label>&nbsp;&nbsp;
+							<label><input type="radio" name="is_best" class="radio_style" value="0" checked="checked"> {:L('no')}</label>
+						</td>
+					</tr>
+                    <tr>
+						<th>{:L('publish')} :</th>
+		 				<td>
+		                	<label><input type="radio" name="status" class="radio_style" value="1"> {:L('yes')} </label>&nbsp;&nbsp;
+							<label><input type="radio" name="status" class="radio_style" value="0" checked="checked"> {:L('no')}</label>
+						</td>
+					</tr>
+				</table>
+			</div>
+        </div>
+		<div class="mt10"><input type="submit" value="{:L('submit')}" id="dosubmit" name="dosubmit" class="btn btn_submit" style="margin:0 0 10px 100px;"><br /><br /><br /></div>
+	</div>
+</div>
+</form>
+<include file="public:footer" />
+<script src="__STATIC__/js/jquery/plugins/colorpicker.js"></script>
+<script src="__STATIC__/js/kindeditor/kindeditor.js"></script>
+<script>
+$('.J_cate_select').cate_select('请选择');
+$(function() {
+	KindEditor.create('#info', {
+		uploadJson : '{:U("attachment/editer_upload")}',
+		fileManagerJson : '{:U("attachment/editer_manager")}',
+		allowFileManager : true
+	});
+	$('ul.J_tabs').tabs('div.J_panes > div');
+
+	//颜色选择器
+	$('.J_color_picker').colorpicker();
+
+	//自动获取标签
+	$('#J_gettags').live('click', function() {
+		var title = $.trim($('#J_title').val());
+		if(title == ''){
+			$.pinphp.tip({content:lang.article_title_isempty, icon:'alert'});
+			return false;
+		}
+		$.getJSON('{:U("shop/ajax_gettags")}', {title:title}, function(result){
+			if(result.status == 1){
+				$('#J_tags').val(result.data);
+			}else{
+				$.pinphp.tip({content:result.msg});
+			}
+		});
+	});
+	
+});
+</script>
+</body>
+</html>

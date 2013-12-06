@@ -1,0 +1,18 @@
+<include file="public:header" />
+<!--天猫折扣精选商品库-->
+<div class="subnav">
+    <h1 class="title_2 line_x">商品图片本地化</h1>
+</div>
+<div class="pad_lr_10" >
+	<if condition="$p eq 0">
+    采集完成！
+    <else/>
+	第{$p+1}批图片采集完成，正在采集第{$p+2}批。。。
+    </if>
+</div>
+<include file="public:footer" />
+<script language="javascript">
+	setTimeout("location.href='{$jump_url}';",1000);
+</script>
+</body>
+</html>

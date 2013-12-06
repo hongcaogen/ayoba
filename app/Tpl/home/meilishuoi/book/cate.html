@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+</head>
+<body>
+<include file="public:header" />
+<!--分类页面-->
+<div class="cate-content" style="width: 1202px;">
+	<!-- 分类导航 -->
+	<div class="book_cate">
+ 
+	  <div class="bcate_warp"> 
+               <volist name="cate_list['s'][$tid]" id="mcate">   
+        <dl>
+             <dt><a href="{:U('book/cate', array('cid'=>$mcate['id']))}"><span class="scate_title" style="color:{$mcate.fcolor}">{$mcate.name}</span></a></dt>
+             <dd>
+					<volist name="cate_list['s'][$mcate['id']]" id="scate">
+					 <em><a href="{:U('book/cate', array('cid'=>$scate['id']))}" <if condition="$cate_info['id'] eq $scate['id']">class="normalselect"<else />class="normalcate"</if>>{$scate.name}</a> </em>  
+					</volist>
+                 
+            </dd>  
+         
+         </dl> 
+     </volist>       
+      </div>   
+   
+    </div>
+	<!-- 分类导航 end -->
+
+
+	<!-- wall_wrap -->
+	<div class="wall_wrap clearfix">
+		<div id="J_waterfall" class="wall_container clearfix masonry" data-uri="__ROOT__/?m=book&a=cate_ajax&cid={$cate_info.id}&sort={$sort}&min_price={$min_price}&max_price={$max_price}&p={$p}">
+			<!-- 瀑布流显示 -->
+			<include file="public:waterfall" />
+			<!-- 瀑布流显示 end -->
+		</div>
+		<!-- 加载条 -->
+		<present name="show_load">
+			<div id="J_wall_loading" class="wall_loading tc gray">
+				<span>
+					{:L('loading')}
+				</span>
+			</div>
+		</present>
+		<!-- 加载条 end -->
+		<!-- 分页 -->
+		<present name="page_bar">
+		<div id="J_wall_page" class="wall_page" <present name="show_page">style="display:block;"</present>>
+			<div class="wall_page_box">
+				<div class="bg wall_page_left"></div>
+				{$page_bar}
+				<div class="bg wall_page_right"></div>
+			</div>
+		</div>
+		</present>
+		<!-- 分页 end -->
+	</div>
+	<!-- wall_wrap end -->
+</div>
+<!-- 分类页面 end-->
+<include file="public:footer" />
+</body>
+</html>

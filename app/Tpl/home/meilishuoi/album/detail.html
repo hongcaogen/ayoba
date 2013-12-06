@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+<css file="__STATIC__/css/meilishuoi/album.css" />
+</head>
+<body>
+<include file="public:header" />
+
+<div style="width: 1202px;" class="cate-content">
+	<div class="album-profile">
+		<div class="album-avatar">
+			<img src="<notempty name="album['banner']">{:attach($album['banner'], 'album')}</notempty>"
+			alt="{$album.title}">
+		</div>
+		<div style="width: 665px;" class="album-info">
+			<h1>{$album.title}</h1>
+			<div class="album-oper follow">
+				<present name="is_followed">
+				<span class="fbtn followed" ><b><i class="ico-followed"></i><a data-aid="{$album.id}" class="J_unfollow_album" href="javascript:;">已关注</a></b></span>
+				<else/>
+				<span class="fbtn"><b><i class="ico-follow"></i><a data-aid="{$album.id}" class="J_follow_album" href="javascript:;">关注</a></b></span>
+				</present>
+				<script type="text/javascript">
+				<!--
+					$('.J_follow_album').live('click', function(){
+						$(".album-oper span i").attr("class","ico-followed");
+					});
+					$('.J_unfollow_album').live('click', function(){
+						$(".album-oper span i").attr("class","ico-follow");
+					});
+				//-->
+				</script>
+				<div class="album-stat">
+					<b title="分享数">{$album.items}<i class="ico-share"></i></b>
+					<b title="粉丝数"><span id="J_afn_{$album.id}">{$album.follows}</span><i class="ico-masters"></i></b>
+					
+				</div>
+			</div>
+			<p>
+				<i class="ico-qout-left"></i>
+				<notempty name="album['intro']">
+				{$album.intro}
+				<else />
+				这家伙太懒！什么都木有留下-_-
+				</notempty>
+				<i class="ico-qout-right"></i>
+			</p>
+			<!-- Baidu Button BEGIN -->
+                <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+                <a class="bds_tsina"></a>
+                <a class="bds_qzone"></a>
+                <a class="bds_tqq"></a>
+                <a class="bds_renren"></a>
+                <span class="bds_more"></span>
+                </div>
+                <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=706880" ></script>
+				<script type="text/javascript" id="bdshell_js"></script>
+				<script type="text/javascript">
+					document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+				</script>
+            <!-- Baidu Button END -->
+		</div>
+		<div class="album-aside">
+			<strong>
+				专辑创建者
+			</strong>
+			<div class="album-creater">
+				<a class="avatar" target="_blank" href="{:U('space/index', array('uid'=>$album['uid']))}">
+					<img width="80" height="80" src="{:avatar($album['uid'], '48')}" alt="{$album.uname}">
+				</a>
+				<div>
+					<a class="profile-name" target="_blank" href="{:U('space/index', array('uid'=>$album['uid']))}">{$album.uname}</a>
+					<br>
+					<if condition="$album['uid'] neq $visitor['id']">
+                        <div class="J_follow_bar" data-uid="{$album.uid}">
+                            <if condition="$author_ship eq 0">
+                            <a href="javascript:;" class="J_fo_u fo_u_btn">{:L('follow')}</a>
+                            <elseif condition="$author_ship eq 1"/>
+                            <span class="fo_u_ok">{:L('followed')}</span><a href="javascript:;" class="J_unfo_u green">{:L('cancel')}</a>
+                            <elseif condition="$author_ship eq 2"/>
+                            <span class="fo_u_all">{:L('follow_mutually')}</span><a href="javascript:;" class="J_unfo_u green">{:L('cancel')}</a>
+                            </if>
+                        </div>
+                        </if>
+				</div>
+			</div>
+
+			<p class="album-all">
+				<a target="_blank" href="{:U('space/album', array('uid'=>$album['uid']))}">
+					{$album.uname}的专辑&gt;
+				</a>
+			</p>
+		</div>
+		<div style="clear:both;height:0;overflow:hidden;">
+		</div>
+	</div>
+	<if condition="$album['uid'] eq $visitor['id']">
+    <div class="J_album_item add_album_content" data-aid="{$album.id}">
+        <a href="javascript:;" class="J_shareitem_btn fl add_album_content_btn" data-aid="{$album.id}">{:L('album_add_item')}</a>
+        <a href="javascript:;" class="J_edit fl edit">{:L('edit')}</a>
+        <a href="javascript:;" class="J_del fl delete">{:L('delete')}</a>
+    </div>
+    </if>
+	<div class="wall_wrap clearfix">
+		<div id="J_waterfall" class="wall_container album_item_list clearfix masonry" data-uri="__ROOT__/?m=album&a=detail_ajax&id={$album.id}&p={$p}" data-distance="1200" style="position: relative; height: 1366px;">
+			<include file="public:waterfall" />
+			<present name="show_load">
+			<div id="J_wall_loading" class="wall_loading tc gray"><span>{:L('loading')}</span></div>
+			</present>
+			<present name="page_bar">
+			<div id="J_wall_page" class="wall_page" <present name="show_page">style="display:block;"</present>>
+				<div class="page_bar">{$page_bar}</div>
+			</div>
+			</present>
+		</div>
+	</div>
+</div>
+
+<include file="public:footer" />
+<script src="__STATIC__/js/albumcmt.js"></script>
+</body>
+</html>

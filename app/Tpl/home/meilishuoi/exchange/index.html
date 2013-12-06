@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+<css file="__STATIC__/css/meilishuoi/exchange.css" />
+</head>
+<body>
+<include file="public:header" />
+<div class="mt10"></div>
+<div class="w960">
+	<!-- cate_sort -->
+	<div class="cate_sort pt10 clearfix">
+		<h1 class="fl" style="margin: 0 130px 0 20px;">兑换</h1>
+		<div class="sort fl">
+			<strong>{:L('sort_order')}：</strong>
+			<a href="{:U('exchange/index', array('sort'=>'hot'))}" <if condition="$sort eq 'hot'">class="active"</if>>{:L('sort_hot')}</a>
+			<a href="{:U('exchange/index', array('sort'=>'new'))}" <if condition="$sort eq 'new'">class="active"</if>>{:L('sort_new')}</a>
+		</div>
+
+		<div class="tags">
+			<strong>分类：</strong>
+			<a href="{:U('exchange/index')}" title="{:L('all')}" <if condition="$cid eq ''">class="active"</if>>{:L('all')}</a>
+			<pin:scoreitem type="cate" return="cate_list">
+			<volist name="cate_list" id="cate">
+			<a href="{:U('exchange/index',array('cid'=>$cate['id']))}" title="{$cate.name}" <if condition="$cid eq $cate['id']">class="active"</if>>{$cate.name}</a>
+			</volist>
+			</pin:scoreitem>
+		</div>
+		<a target="_blank" class="tdu fr" href="{:U('exchange/rule')}">{:L('how_to_earn_score')}</a>
+	</div>
+	<!-- cate_sort end -->
+  
+    <div id="J_waterfall" class="wall_container clearfix">
+
+        <volist name="item_list" id="item">
+        <div class="J_item wall_item score_item">
+            <ul class="pic">
+                <li>
+                    <a href="{:U('exchange/detail', array('id'=>$item['id']))}" title="{$item.title}" target="_blank"><img class="J_img" src="{:attach($item['img'], 'score_item')}" alt="{$item.title}" /></a>
+                </li>
+            </ul>
+            <p class="title"><a href="{:U('exchange/detail', array('id'=>$item['id']))}" class="clr6" target="_blank">{$item.title}</a></p>
+            <div class="ec clearfix">
+                <p class="fl"><span class="orange ft14 bold mr5">{$item.score}</span><img src="__STATIC__/images/score.png" /></p>
+                <a href="{:U('exchange/detail', array('id'=>$item['id']))}" class="jifen_btn fr" target="_blank">{:L('ec_btn_short')}</a>
+            </div>
+        </div>
+        </volist>
+		<div class="page_bar">{$page_bar}</div>
+    </div>
+</div>
+<include file="public:footer" />
+<script>
+$(function(){
+    var p = '<notempty name="p">{$p}</notempty>';
+    $.pinphp.wall.init({
+        ajax_data: {p: p}
+    });
+});
+</script>
+</body>
+</html>

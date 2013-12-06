@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<include file="public:head" />
+<css file="__STATIC__/css/default/news.css" />
+</head>
+<body>
+<include file="public:header" />
+
+<div class="main_wrap pt20">
+
+<!--资讯首页左边-->
+  <div class="w200 article_box fl">
+    <div class="title">文章分类</div>
+    <dl class="newsbar">
+    	<volist name="cate_list" id="lists">
+		<dt>{$lists.name}</dt>
+		<dd>
+        <volist name="lists.chrid" id="list">
+        <a href="{:U('news/lists',array('cate_id'=>$list['id']))}" target="_blank">{$list.name}</a>
+        </volist>
+        </dd>
+
+        </volist>
+	</dl>
+  </div>
+  <!--资讯首页右边-->
+  <div class="w750 fr">
+  
+	  <div class="article_box clearfix">	  
+		<div class="title">热门推荐</div>		
+		<div class="hot_article clearfix">		
+			<div class="hot_article_left fl"><img src="images/1.jpg" /></div>			
+			<div class="hot_article_right fr">
+				<h3><a href="{:U('news/detail',array('id'=>$hotInfo['id']))}">{$hotInfo.title}</a></h3>
+				<p>{$hotInfo.info} </p>
+				<ul class="hot_article_more">
+					<volist name="hotList" id="hotLists" >
+                    <li><a href="{:U('news/detail',array('id'=>$hotLists['id']))}">{$hotLists.title}</a></li>
+                    </volist>
+				</ul>
+			</div>		
+		</div>	
+	</div>
+	
+	<div class="article_box clearfix">	  
+		<div class="title">资讯列表</div>		
+		<div class="article_list clearfix">
+        	<volist name="cate_list" id="cate_lists">
+            <volist name="cate_lists.chrid" id="cate">
+                <dl>
+                	<dt><a href="{:U('news/lists',array('cate_id'=>$cate['id']))}">{$cate.name}</dt>
+                    <volist name="cate.alist" id="alist">
+                    <dd><a href="{:U('news/detail',array('id'=>$alist['id']))}">{$alist.title}</a></dd>
+                    </volist>
+                </dl>
+            </volist>
+            </volist>
+			
+		</div>	
+	</div>
+
+	
+</div>
+
+<include file="public:footer" />
+</body>
+</html>

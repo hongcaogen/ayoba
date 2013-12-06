@@ -1,0 +1,27 @@
+<div style="position: relative" class="cate_sort pt10 clearfix">
+	<div style="border: 0" class="sort fl pl15 mr20">
+		<form action="__ROOT__/" method="get" target="_blank" class="form_search" style="width:190px;">
+            <input type="hidden" name="m" value="search">
+            <input type="text" name="q" value="{$q}" class="text r5">
+            <input type="hidden" name="t" value="{$t}">
+            <input type="submit" class="submit" value="搜索">
+        </form>
+	</div>
+	<div class="search_tags fl">
+		<a <if condition="$t eq 'item'">class="active"</if> href="{:U('search/index', array('q'=>$q, 't'=>'item'))}">宝贝</a>
+		<a <if condition="$t eq 'album'">class="active"</if> href="{:U('search/index', array('q'=>$q, 't'=>'album'))}">专辑</a>
+		 <a <if condition="$t eq 'user'">class="active"</if> href="{:U('search/index', array('q'=>$q, 't'=>'user'))}">找人</a>
+	</div>
+	<div class="search_history fl">
+		<strong style="color: #999">
+			最近搜索：
+		</strong>
+		<div class="fl" id="J_search_history">
+			<volist name="search_history" id="sh">
+            <a href="{:U('search/index', array('q'=>$sh['q'], 't'=>$sh['t']))}">{:urldecode($sh['q'])}</a>
+            </volist>
+		</div>
+	</div>
+	<a title="清空记录" class="clear_history" href="{:U('search/clear_history')}">
+	</a>
+</div>

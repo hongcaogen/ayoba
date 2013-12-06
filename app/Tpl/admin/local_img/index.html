@@ -1,0 +1,43 @@
+<include file="public:header" />
+<!--天猫折扣精选商品库-->
+<div class="subnav">
+    <h1 class="title_2 line_x">商品图片本地化</h1>
+</div>
+<div class="pad_lr_10" >
+    <form action="{:U('local_img/index')}" method="post" >
+    <table width="100%" cellspacing="0" class="table_form">
+        <tbody>
+            <tr>
+                <th width="150">每批商品数量：</th>
+                <td>
+                    <input type="text" name="num" size="8" class="input-text" value="10" />
+                </td>
+            </tr>
+            <tr>
+                <th>审核状态：</th>
+                <td>
+                	<label><input type="radio" name="status" class="radio_style" value="1" checked="checked"> 已审核的商品&nbsp;&nbsp;</label>
+                    <label><input type="radio" name="status" class="radio_style" value="0"> 未审核的商品&nbsp;&nbsp;</label>
+                    <label><input type="radio" name="status" class="radio_style" value=""> 所有商品&nbsp;&nbsp;</label>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td>
+                    <input type="submit" name="search" class="btn btn_submit mr10" value="确定" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                	本地化数据统计(本地化数量/商品数量)<br/>
+                    <div class="f14">总数:<b><em class="red">{$item_local_total}</em>/<em class="blue">{$item_total}</em></b>&nbsp;&nbsp;审核:<b><em class="red">{$item_local_check_total}</em>/<em class="blue">{$item_check_total}</em></b>&nbsp;&nbsp;未审核:<b><em class="red">{$item_local_total-$item_local_check_total}</em>/<em class="blue">{$item_total-$item_check_total}</em></b>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+</div>
+<include file="public:footer" />
+</body>
+</html>
