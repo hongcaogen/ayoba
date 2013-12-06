@@ -200,6 +200,13 @@
     margin-right: 16px;
 }
 
+.bcate_warp dd em a.current { color: rgb(255, 102, 153); font-weight: bold;}
+.bcate_warp dd em a:hover{color:rgb(255, 102, 153);text-decoration:underline;}
+.bcate_warp .normalcate{background: none repeat scroll 0 0 #FBFBFB;color: rgb(204, 102, 153);}
+.bcate_warp .normalcate:hover{border-color: #ACACAC;box-shadow: 1px 1px 2px #ACACAC;color: rgb(255, 102, 153);}
+.bcate_warp .normalselect{background: none repeat scroll 0 0 #FF0066;border-color: #FF0066;box-shadow: 1px 1px 2px #FF0066;color: #FFFFFF;}
+
+
 .bcate{border-bottom: 1px solid #D3D3D3;height: 49px;}
 .bcate span {display:inline-block;height:20px;line-height:20px;margin:16px 7px 0 19px; padding: 0 5px; text-align:center;position:relative;}
 .bcate span a {color:#787878;font-size:14px;font-weight:bold;}

@@ -11,18 +11,18 @@
 	<div class="book_cate">
  
 	  <div class="bcate_warp"> 
-               <volist name="cate_list['s'][$tid]" id="mcate">   
-        <dl>
-             <dt><a href="{:U('book/cate', array('cid'=>$mcate['id']))}"><span class="scate_title" style="color:{$mcate.fcolor}">{$mcate.name}</span></a></dt>
-             <dd>
+        <volist name="cate_list['s'][$tid]" id="mcate">   
+           <dl>
+                <dt><a href="{:U('book/cate', array('cid'=>$mcate['id']))}"<if condition="$cate_info['id'] eq $mcate['id']">class="normalselect"<else />class="normalcate"</if>>{$mcate.name}</a></dt>
+                <dd>
 					<volist name="cate_list['s'][$mcate['id']]" id="scate">
-					 <em><a href="{:U('book/cate', array('cid'=>$scate['id']))}" <if condition="$cate_info['id'] eq $scate['id']">class="normalselect"<else />class="normalcate"</if>>{$scate.name}</a> </em>  
+					 <em><a href="{:U('book/cate', array('cid'=>$scate['id']))}" <if condition="$cate_info['id'] eq $scate['id']">class="current"</if>>{$scate.name}</a> </em>  
 					</volist>
                  
-            </dd>  
+               </dd>  
          
-         </dl> 
-     </volist>       
+          </dl> 
+        </volist>       
       </div>   
    
     </div>
