@@ -76,7 +76,8 @@ return array(
     'unbind' => '取消绑定',
     'gobind' => '去绑定',
 
-    'binding_title' => '完善信息',
+    'binding_title' => '您好，欢迎入住爱优芭！
+                         还有一步，补充必要的个人信息直接登录哦！',
 
     'follow_invalid_user' => '请选择关注的用户',
     'follow_self_not_allow' => '不能关注您自己',
