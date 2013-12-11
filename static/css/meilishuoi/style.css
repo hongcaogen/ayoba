@@ -2,7 +2,7 @@
 .header_wrap, .main_wrap, .w960{width:960px;margin:0 auto;}
 .footer_wrap{ position: relative;}
 .form_search .submit,.head_user_op .user_name_r,.head_user_op .user_name_r_hov,.album_author .num .likes,.album_author .num .shares{background: url(images/icons.png) no-repeat scroll 0 0 transparent;}
-.main_wrap {_padding-left:22px; background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #D5D5D5;margin: 15px auto;padding: 15px;width: 960px;}
+.main_wrap {_padding-left:22px; background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #D5D5D5;margin: 5px auto;padding:10px;width: 960px;}
 
 /* 页头LOGO */
 .header_box {height: 81px;}
@@ -188,7 +188,6 @@
 
 .bcate_warp dl em {
     float: left;
-	line-height: 24px;
 	margin: 4px 0px;
 	line-height: 14px;
 	padding: 0px 8px;

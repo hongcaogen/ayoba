@@ -8,40 +8,33 @@
 <div class="w960">{:R('advert/index', array(9), 'Widget')}</div>
 <include file="public:header" />
 
-<div class="main_wrap">
+<div class="main_wrap" >
     <div class="w960">{:R('advert/index', array(10), 'Widget')}</div>
-    <div class="focusbox clearfix">
+    <div class="focusbox ">
         <div class="focusbox_l fl">{:R('advert/index', array(1), 'Widget')}</div>
-        <div class="user_act fr">
-            <notempty name="visitor">
-            <div class="user_info">
-                <a class="avatar" href="{:U('space/index')}" target="_blank"><img class="r3" src="{:avatar($visitor['id'], 48)}" alt="{$visitor.username}"></a>
-                <div class="user_name">
-                    <a href="{:U('space/index')}" target="_blank">{$visitor.username}</a>
-                </div>
-                <p class="feed_link">
-                    {:L('wellcome_back')}{:C('pin_site_name')}，{:L('go')}<a href="{:U('space/me')}" target="_blank">{:L('see_friends_feed')}</a>吧。
-                </p>
-            </div>
-            <else/>    
-            <div class="user_login"> 
-                <a href="{:U('user/register')}" class="register_btn">{:L('register_now')}</a>
-                <volist name="oauth_list" id="val">
-                <a href="{:U('oauth/index', array('mod'=>$val['code']))}" class="oauth_btn"><img src="__STATIC__/images/oauth/{$val.code}/icon.png"></a>
-                </volist>
-            </div>
-            </notempty>
-            {:R('advert/index', array(2), 'Widget')}
+        <div class="user_act fl">
+            <volist name="index_cate_list" id="cate">
+            <dl >
+                  <dt> <a href="{:U('book/cate', array('cid'=>$cate['id']))}" title="{$cate.name}">{$cate.name}</a></dt>
+                  <dd> 
+                        <volist name="cate['sub']" id="subcate">
+                          <em>  <a href="{:U('book/cate', array('cid'=>$subcate['id']))}">{$subcate.name}</a> </em>
+                         </volist>                     
+                  </dd>
+            </dl>
+           </volist> 
+ <!--{:R('advert/index', array(2), 'Widget')}-->
             <div class="applink" > 
                 <div class="fl" >{:R('advert/index', array(4), 'Widget')}</div> 
                 <div class="fr" >{:R('advert/index', array(5), 'Widget')}</div> 
-            </div>      
+            </div>  
+            
         </div>
         
     </div>
 
     <!-- 首页分类 -->
-    <volist name="index_cate_list" id="cate">
+<!--    <volist name="index_cate_list" id="cate">
     <div class="index_piece">
         <div class="piece_head clearfix">
             <h3 class="cate_title"><a href="{:U('book/cate', array('cid'=>$cate['id']))}" title="{$cate.name}">{$cate.name}</a></h3>
@@ -86,11 +79,11 @@
             </div>
         </div>
     </div>
-    </volist>
+    </volist>-->
 	<!-- 首页分类 end -->
 	<!-- 发现 -->
     <if condition="C('pin_index_wall')">
-    <div class="piece_head clearfix wel_find_more">
+    <div class="piece_head clearfix ">
         <h2><a href="{:U('book/index')}">{:L('find')}</a></h2>
 		<ul class="fl">
         <volist name="hot_tags" id="tag">
