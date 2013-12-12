@@ -25,11 +25,7 @@ class oauth {
      * 跳转到授权页面
      */
     public function authorize() {
-        $url = $this->_om->getAuthorizeURL();
-		
-		echo 'url'.$url;
-		redirect($url);		
-		//redirect($this->_om->getAuthorizeURL());
+		redirect($this->_om->getAuthorizeURL());
     }
 
     /**
@@ -44,7 +40,7 @@ class oauth {
             $user_info = M('user')->field('id,username')->where(array('id' => $bind_user['uid']))->find();
             //登陆
             $this->_oauth_visitor()->assign_info($user_info);
-            return U('user/index');
+            return U('index/index');
         } else {
             //处理用户名
             if (M('user')->where(array('username' => $user['keyname']))->count()) {
@@ -69,7 +65,8 @@ class oauth {
             $user['type'] = $this->_type;
             //把第三方的数据存到COOKIE
             cookie('user_bind_info', $user);
-            return U('user/binding'); //跳转到绑定注册页
+            return U('user/binding'); //跳转到绑定注册页			
+			
         }
     }
 
